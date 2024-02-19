@@ -1,0 +1,90 @@
+﻿@model OrnekProje_Entity.ViewModel.BookVM
+
+@{
+	var title = "Book details Created";
+}
+
+<form method="post">
+	 <div class="row p-3 border">
+		   <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+		   <input type="hidden" asp-for="Book.BookId" />
+		<input type="hidden" asp-for="Book.BookDetails.BookDetailId" />
+		@if (Model.Book == null || Model.Book.BookId != 0 || Model.Book.BookDetails.BookDetailId !=0)
+		{
+			title = "Book detail information edit ";
+		}
+
+		<div class="col-12 border-bottom">
+			 <h2 class="text-primary">@title</h2>
+		</div>
+
+		<div class="col-8 pt-4">
+			 <div class="form-group row">
+				 <div class="col-4">
+					 <label asp-for="Book.BookName" disabled class="form-control"></label>
+				 </div>
+				 <div class="col-8">
+					  <input asp-for="Book.BookName" disabled class="form-control" />
+				 </div>
+
+			 </div>
+
+			<div class="form-group row">
+				<div class="col-4">
+					<label asp-for="Book.BookDetails.NumberofChapters" disabled class="form-control"></label>
+				</div>
+				<div class="col-8">
+					<input asp-for="Book.BookDetails.NumberofChapters" disabled class="form-control" />
+					<span asp-validation-for="Book.BookDetails.NumberofChapters" class="text-danger"></span>
+				</div>
+
+			</div>
+
+			<div class="form-group row">
+				<div class="col-4">
+					<label asp-for="Book.BookDetails.ChapterPage" disabled class="form-control"></label>
+				</div>
+				<div class="col-8">
+					<input asp-for="Book.BookDetails.ChapterPage" disabled class="form-control" />
+					<span asp-validation-for="Book.BookDetails.ChapterPage" class="text-danger"></span>
+
+				</div>
+
+			</div>
+
+			<div class="form-group row">
+				<div class="col-4">
+					<label asp-for="Book.BookDetails.BookDetailWeight" disabled class="form-control"></label>
+				</div>
+				<div class="col-8">
+					<input asp-for="Book.BookDetails.BookDetailWeight" disabled class="form-control" />
+					<span asp-validation-for="Book.BookDetails.BookDetailWeight" class="text-danger"></span>
+
+				</div>
+
+				<div class="form-group row">
+					<div class="col-4 offset-4">
+						@if (Model.Book == null || Model.Book.BookDetailId !=0 || Model.Book.BookDetails.BookDetailId !=0 )
+						{
+							<button type="submit" class="btn btn-primary form-control">Update </button>
+						}
+						else
+						{
+							<button type="submit" class="btn btn-primary form-control">Create </button>
+
+						}
+					</div>
+				</div>
+				<div class="col-4 ">
+					<a asp-action="Index" class="btn btn-success form-control">List Repaet</a>
+				</div>
+
+			</div>
+		</div>
+	 </div>
+</form>
+
+@section Scripts{
+	<partial name="_ValidationScriptsPartial"></partial>
+}

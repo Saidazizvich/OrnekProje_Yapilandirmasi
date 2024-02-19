@@ -1,0 +1,49 @@
+﻿@model IEnumerable<OrnekProje_Entity.Models.Writer>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="border p-4 bg-white">
+    <div class="row">
+        <div class="text-info">
+            <h2 class="">Writer List</h2>
+            <div class="col-2 text-right">
+                <a asp-action="Index" class="btn btn-info text-danger">Create New Writer</a>
+            </div>
+        </div>
+        <br />
+        <div>
+            @if (Model.Count() > 0)
+            {
+                <table class="table table-striped border">
+                    <tr class="table-secondary">
+                        <th>Name</th>
+                        <th>SurName</th>
+                        <th>Location</th>
+                        <th>Birthday</th>
+                    </tr>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.WriterName</td>
+                            <td>@item.WriterSurName</td>
+                            <td>@item.Location</td>
+                            <td>@item.Birthday</td>
+                            <td>
+                                <a class="btn btn-primary text-white" asp-action="Update_Insert" asp-route-Id="@item.WriterId"></a>
+                            </td>
+                            <td>
+                                <a class="btn btn-primary text-danger" asp-action="Delete" asp-route-Id="@item.WriterId"></a>
+                            </td>
+                        </tr>
+                    }
+                </table>
+
+            }
+        </div>
+    </div>
+</div>
+
+

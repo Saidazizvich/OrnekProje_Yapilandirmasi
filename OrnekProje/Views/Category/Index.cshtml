@@ -1,0 +1,83 @@
+﻿@model IEnumerable<OrnekProje_Entity.Models.Category>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}   
+ 
+
+ <div class="border p-4 bg-white ">
+        <div class="row">     
+              <div class="col-9">
+                  <h2 class="text-info">Category List</h2>
+              </div>   
+              
+                  <div class="col-3 text-right">
+                      <a asp-action="Update" class="btn btn-info form-control">Create Table</a>
+
+                  </div>
+        </div>
+
+        <div class="row">
+             <div class="col-3 text-right">
+               <a asp-action="ManyAdd" class="btn btn-info form-control">Many Add</a>
+            </div>
+
+            <div class="col-3 text-right">
+               <a asp-action="Update_Insert" class="btn btn-warning form-control">Many Update</a>
+            </div>
+
+              <div class="col-3 text-right">
+                <a asp-action="Update Insert" class="btn btn-danger form-control">Many Delete</a>
+              </div>
+
+             <div class="col-3 text-right">
+              <a asp-action="Update Insert" class="btn btn-primary form-control">Many Select</a>
+            </div>
+
+        </div>
+
+	<br/>
+    <div>
+         @if (Model.Count() >0)
+        {
+            <table class="table table-striped border">
+                <tr class="table-secondary">
+                    <th>CategoryName</th>
+                  
+
+                </tr>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                      
+                        <td>@item.CategoryName</td>
+
+                        <td>
+
+                            <a class="btn btn-info text-white" asp-action="Post" asp-route-Id="@item.CategoryId">Edit</a>
+                            <a class="btn btn-warning text-white" asp-action="Update" asp-route-Id="@item.CategoryId">Update</a>
+
+
+                        </td>
+                    </tr>
+                }
+            </table>
+        }
+        else
+        {
+              <p>Not found in edit and profile</p>
+        }
+
+    </div>
+
+
+
+
+
+
+
+</div>
+   
+
+   

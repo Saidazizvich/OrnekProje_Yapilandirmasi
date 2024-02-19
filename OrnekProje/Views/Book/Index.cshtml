@@ -1,0 +1,73 @@
+﻿@model IEnumerable<OrnekProje_Entity.Models.Book>
+
+	<br />
+<br />
+
+<div class="border p-4 bg-white">
+	<div class="row">
+		<div class="col-8">
+			 <h2 class="text-info">Book List</h2>
+
+		</div>
+		<div class="col-2">
+			<a asp-action="Working" class="btn btn-warning form-control">Working</a>
+		</div>
+		<div class="col-2">
+			<a asp-action="Update_Insert" class="btn btn-info form-control">Create New List</a>
+		</div>
+	</div>
+
+	<br />
+	 <div>
+		 @if (Model.Count() > 0)
+		{
+                  <table class="table table-striped border">
+					     <tr class="table-secondary">
+					<th>
+						Book Name
+					</th>
+
+					<th>
+						  Price
+					</th>
+					<th>
+						PublishlerName
+					</th>
+						 </tr>
+						 @foreach (var item in Model)
+			         	{
+                    <tr>
+						<td>@item.BookName</td>
+						<td>@item.Price</td>
+							
+					
+						<td>@item.Publisher.Name</td>
+			
+					
+					@*	<td>@item.Publisher.Name</td>
+							 
+						<td>
+							@{var pub = "";}
+
+							@foreach(var publ in item.Book_Writers)
+							{
+								pub = publ.Writer.FullName + ",";
+							}
+							@pub.Trim().TrimEnd(',');
+ 							}
+						</td>*@
+
+						<td>
+							<a asp-action="Update_Insert" class="btn btn-primary text-danger" asp-route-Id="@item.BookId">Edit</a>
+							<a asp-action="BookDetail" class="btn btn-warning text-danger" asp-route-Id="@item.BookId">Edit</a>
+							<a asp-action="Delete" class="btn btn-info text-danger" asp-route-Id="@item.BookId">Edit</a>
+							<a asp-action="Update_Insert" class="btn btn-success text-danger" asp-route-Id="@item.BookId">Edit</a>
+
+						</td>
+						
+					</tr>
+				}
+				  </table>			
+		}
+	 </div>
+</div>

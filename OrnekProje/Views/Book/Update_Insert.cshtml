@@ -1,0 +1,89 @@
+﻿@model OrnekProje_Entity.ViewModel.BookVM
+
+@{
+	var title = "Update Book";
+}
+
+<form method="post">
+	 <div class="row p-3 border">
+		  <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+		  <input type="hidden" asp-for="Book.BookId" />
+
+		  @if (Model.Book != null)
+		{
+			title = "Book Edit";
+		}
+
+		<div class="col-12 border-bottom">
+			 <h2 class="text-primary">@title</h2>
+		</div>
+
+		<div class="col-8 pt-4">
+			 <div class="form-group row">
+				  <div class="col-4">
+					   <label asp-for="Book.BookName"></label>
+				  </div>
+				  <div class="col-8">
+					  <input asp-for="Book.BookName" class="form-control" />
+					  <span asp-validation-for="Book.BookName" class="text-danger"></span>
+				  </div>
+			 </div>
+
+			<div class="form-group row">
+				<div class="col-4">
+					<label asp-for="Book.Price"></label>
+				</div>
+				<div class="col-8">
+					<input asp-for="Book.Price" class="form-control" />
+					<span asp-validation-for="Book.Price" class="text-danger"></span>
+				</div>
+			</div>
+
+			<div class="form-group row">
+				<div class="col-4">
+					<label asp-for="Book.DiscountPrice"></label>
+				</div>
+				<div class="col-8">
+					<input asp-for="Book.DiscountPrice" class="form-control" />
+					<span asp-validation-for="Book.DiscountPrice" class="text-danger"></span>
+				</div>
+
+
+				<div class="form-group row">
+					<div class="col-4">
+						<label asp-for="Book.PublisherId"></label>
+					</div>
+					<div class="col-8">
+						@Html.DropDownListFor(a=>a.Book.PublisherId, Model.PublishList,"**PublisherList**",new {@class="form-control"})
+						<span asp-validation-for="Book.BookId" class="text-danger"></span>
+					</div>
+				</div>
+				  
+				<br />
+				<div class="form-group row">
+					<div class="col-4 offset-4">
+						@if (Model.Book == null)
+						{
+							<button type="submit" class="btn btn-primary form-control">Create</button>
+						}
+						else
+						{
+							<button type="submit" class="btn btn-primary form-control">Update</button>
+
+						}
+					</div>
+
+					<div class="col-4">
+						<a asp-action="Index" class="btn btn-success form-control">List Repeat</a>
+					</div>
+				</div>
+
+			</div>
+		</div>
+
+	 </div>
+</form>
+
+@section Scripts{
+	<Partial name="_ValidationScriptsPartial"></Partial>
+}
